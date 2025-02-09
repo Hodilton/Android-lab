@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">lab_1</string>
+
+    <string name="hint_first_name">Введите имя</string>
+    <string name="hint_last_name">Введите фамилию</string>
+    <string name="hint_age">Введите возраст</string>
+    <string name="hint_salary">Введите зарплату</string>
+    <string name="hint_button_to">Перейти ко второй активити</string>
+
+    <string name="hint_data">Полученные данные</string>
+    <string name="hint_button_from">Назад</string>
+</resources>
