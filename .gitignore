@@ -34,3 +34,9 @@ google-services.json
 *.pro
 /lab_1/app/src/androidTest
 /lab_1/app/src/main/res/drawable
+/lab_1/app/src/main/res/mipmap-anydpi
+/lab_1/app/src/main/res/mipmap-hdpi
+/lab_1/app/src/main/res/mipmap-mdpi
+/lab_1/app/src/main/res/mipmap-xhdpi
+/lab_1/app/src/main/res/mipmap-xxhdpi
+/lab_1/app/src/main/res/mipmap-xxxhdpi
