@@ -33,3 +33,4 @@ google-services.json
 *.hprof
 *.pro
 /lab_1/app/src/androidTest
+/lab_1/app/src/main/res/drawable
