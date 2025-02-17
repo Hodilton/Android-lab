@@ -34,6 +34,7 @@ google-services.json
 *.pro
 
 **/app/src/androidTest
+**/app/src/main/res/drawable/*.xml
 **/app/src/main/res/mipmap-anydpi
 **/app/src/main/res/mipmap-hdpi
 **/app/src/main/res/mipmap-mdpi
@@ -50,3 +51,5 @@ gradlew.bat
 build.gradle
 gradle.properties
 settings.gradle
+
+**/*.gitignore
