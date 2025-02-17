@@ -1,16 +1,8 @@
 <resources>
     <string name="app_name">lab_2</string>
 
-    <string name="button_goToStreet">Список улиц</string>
-    <string name="button_goToMain">Назад</string>
-
-    <string name="street_length">Длина: %1$d м</string>
-    <string name="street_name">Название: %1$s</string>
-
-    <string-array name="streets">
-        <item>Невский проспект</item>
-        <item>Арбат</item>
-        <item>Тверская улица</item>
-        <item>Садовое кольцо</item>
-    </string-array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_first_message">Привет, это Fragment!</string>
+    <string name="btn_goToSecondFragment">Заменить фрагмент</string>
+    <string name="fragment_second_message">Это SecondFragment!</string>
 </resources>
