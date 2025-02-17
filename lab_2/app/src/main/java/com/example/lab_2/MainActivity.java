@@ -1,9 +1,12 @@
 package com.example.lab_2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.Button;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+
+import com.example.lab_2.fragment.StreetFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,8 +15,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnStreetList = findViewById(R.id.btnStreetList);
-        btnStreetList.setOnClickListener(v -> startActivity(
-                new Intent(MainActivity.this, StreetActivity.class)));
+        openFragment(new StreetFragment());
+    }
+
+    private void openFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_fragment, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
