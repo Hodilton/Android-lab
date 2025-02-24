@@ -21,6 +21,12 @@ public class StreetAdapter extends BaseAdapter {
         this.inflater = LayoutInflater.from(context);
     }
 
+    public void updateList(List<Street> newList) {
+        streets.clear();
+        streets.addAll(newList);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() { return streets.size(); }
     @Override
