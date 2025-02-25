@@ -29,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        setResult(RESULT_OK);
         super.onBackPressed();
         finish();
     }

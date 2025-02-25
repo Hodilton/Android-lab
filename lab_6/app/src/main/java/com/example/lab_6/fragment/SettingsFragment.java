@@ -1,5 +1,6 @@
 package com.example.lab_6.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,8 @@ public class SettingsFragment extends Fragment {
 
         saveButton.setOnClickListener(v -> {
             this.saveSettings();
+            this.requireActivity().setResult(Activity.RESULT_OK);
+            this.requireActivity().finish();
             Toast.makeText(getContext(), "Настройки сохранены", Toast.LENGTH_SHORT).show();
         });
 
