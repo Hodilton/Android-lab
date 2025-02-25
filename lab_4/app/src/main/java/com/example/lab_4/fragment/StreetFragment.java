@@ -68,8 +68,8 @@ public class StreetFragment extends Fragment {
     private void openAddStreetFragment() {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment, new AddStreetFragment()) // Контейнер для фрагментов
-                .addToBackStack(null) // Добавляем в стек возврата
+                .replace(R.id.main_fragment, new AddStreetFragment())
+                .addToBackStack(null)
                 .commit();
     }
 
