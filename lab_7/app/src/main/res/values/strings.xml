@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">lab_4</string>
+
+    <string name="street_length">Длина: %1$d м</string>
+    <string name="street_name">Название: %1$s</string>
+
+    <string name="btn_add_street">Добавить</string>
+
+    <string name="dialog_street_name">Название улицы</string>
+    <string name="dialog_street_lenght">Длина (м)</string>
+    <string name="add_street_text">Название улицы</string>
+    <string name="add_street_lenght">Длина (м)</string>
+    <string name="btn_save">Сохранить</string>
+
+    <string-array name="streets">
+        <item>Невский проспект</item>
+        <item>Арбат</item>
+        <item>Тверская улица</item>
+        <item>Садовое кольцо</item>
+    </string-array>
+</resources>
