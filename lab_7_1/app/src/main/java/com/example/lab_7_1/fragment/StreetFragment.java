@@ -1,4 +1,4 @@
-package com.example.lab_4.fragment;
+package com.example.lab_7_1.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,9 +14,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 
-import com.example.lab_4.R;
-import com.example.lab_4.adapter.StreetAdapter;
-import com.example.lab_4.view_model.StreetViewModel;
+import com.example.lab_7_1.R;
+import com.example.lab_7_1.adapter.StreetAdapter;
+import com.example.lab_7_1.view_model.StreetViewModel;
 
 public class StreetFragment extends Fragment {
 
@@ -24,6 +24,7 @@ public class StreetFragment extends Fragment {
     private StreetViewModel viewModel;
     private ListView listView;
     private Button addButton;
+    private ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -38,12 +39,14 @@ public class StreetFragment extends Fragment {
         initViews(view);
         setupViewModel();
         setListeners();
+        loadStreetsWithDelay();
     }
 
     private void initViews(View view) {
         listView = view.findViewById(R.id.listViewStreet);
         addButton = view.findViewById(R.id.buttonAddStreet);
         adapter = new StreetAdapter(requireContext(), new ArrayList<>());
+        progressBar = view.findViewById(R.id.progressBar);
         listView.setAdapter(adapter);
     }
 
@@ -63,6 +66,25 @@ public class StreetFragment extends Fragment {
             showDeleteDialog(position);
             return true;
         });
+    }
+
+    private void loadStreetsWithDelay() {
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            requireActivity().runOnUiThread(() -> {
+                progressBar.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
+
+                viewModel.getStreets().observe(getViewLifecycleOwner(), streets -> {
+                    adapter.updateList(streets);
+                    adapter.notifyDataSetChanged();
+                });
+            });
+        }).start();
     }
 
     private void openAddStreetFragment() {

@@ -1,4 +1,4 @@
-package com.example.lab_4.view_model;
+package com.example.lab_7_1.view_model;
 
 import android.app.Application;
 
@@ -6,8 +6,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.lab_4.model.Street;
-import com.example.lab_4.utils.SharedPreferencesHelper;
+import com.example.lab_7_1.model.Street;
+import com.example.lab_7_1.utils.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.lab_4.model;
+package com.example.lab_7_1.model;
 
 public class Street {
     private String name;

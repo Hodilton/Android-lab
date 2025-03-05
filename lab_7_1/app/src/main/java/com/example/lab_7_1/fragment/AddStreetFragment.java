@@ -1,4 +1,4 @@
-package com.example.lab_4.fragment;
+package com.example.lab_7_1.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,9 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.lab_4.R;
-import com.example.lab_4.model.Street;
-import com.example.lab_4.view_model.StreetViewModel;
+import com.example.lab_7_1.R;
+import com.example.lab_7_1.model.Street;
+import com.example.lab_7_1.view_model.StreetViewModel;
 
 public class AddStreetFragment extends Fragment {
     private EditText editTextName;

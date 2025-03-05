@@ -1,4 +1,4 @@
-package com.example.lab_4.adapter;
+package com.example.lab_7_1.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
-import com.example.lab_4.R;
-import com.example.lab_4.model.Street;
+import com.example.lab_7_1.R;
+import com.example.lab_7_1.model.Street;
 
 public class StreetAdapter extends BaseAdapter {
     private final List<Street> streets;

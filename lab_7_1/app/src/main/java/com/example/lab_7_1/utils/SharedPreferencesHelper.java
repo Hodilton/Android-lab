@@ -1,10 +1,10 @@
-package com.example.lab_4.utils;
+package com.example.lab_7_1.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.lab_4.model.Street;
+import com.example.lab_7_1.model.Street;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;

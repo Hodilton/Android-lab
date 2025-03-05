@@ -1,4 +1,4 @@
-package com.example.lab_4;
+package com.example.lab_7_1;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.Fragment;
 
-import com.example.lab_4.fragment.StreetFragment;
+import com.example.lab_7_1.fragment.StreetFragment;
 
 public class MainActivity extends AppCompatActivity {
 
