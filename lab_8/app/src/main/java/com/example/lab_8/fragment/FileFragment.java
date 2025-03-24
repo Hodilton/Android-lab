@@ -97,6 +97,7 @@ public class FileFragment extends Fragment {
 
     private void openFileEditor(int position) {
         String fileName = viewModel.getFiles().getValue().get(position);
+        viewModel.setFileName(fileName);
 
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
