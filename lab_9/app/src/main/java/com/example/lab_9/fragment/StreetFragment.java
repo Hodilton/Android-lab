@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import androidx.lifecycle.ViewModelProvider;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +16,7 @@ import com.example.lab_9.R;
 import com.example.lab_9.adapter.StreetAdapter;
 import com.example.lab_9.model.Street;
 import com.example.lab_9.database.entities.StreetEntity;
-import com.example.lab_9.repository.StreetRepository;
+import com.example.lab_9.view_model.StreetViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +24,11 @@ import java.util.List;
 public class StreetFragment extends Fragment {
 
     private StreetAdapter adapter;
-    private List<Street> streets;
-    private StreetRepository streetRepository;
+    private final List<Street> streets = new ArrayList<>();
+    private StreetViewModel viewModel;
     private ListView listView;
     private Button addButton;
+    private ProgressBar progressBar;
 
     public StreetFragment() { }
 
@@ -38,29 +40,45 @@ public class StreetFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        viewModel = new ViewModelProvider(this).get(StreetViewModel.class);
+
         initViews(view);
+        observeData();
         setListeners();
     }
 
     private void initViews(View view) {
         listView = view.findViewById(R.id.listViewStreet);
         addButton = view.findViewById(R.id.buttonAddStreet);
-
-        streetRepository = new StreetRepository(requireContext());
-
-        loadStreets();
+        progressBar = view.findViewById(R.id.progressBar);
 
         adapter = new StreetAdapter(requireContext(), streets);
         listView.setAdapter(adapter);
     }
 
-    private void loadStreets() {
-        List<StreetEntity> streetEntities = streetRepository.getAllStreets();
+    private void observeData() {
+        viewModel.getStreets().observe(getViewLifecycleOwner(), streetEntities -> {
+            if (streetEntities != null) {
+                streets.clear();
+                for (StreetEntity streetEntity : streetEntities) {
+                    streets.add(new Street(streetEntity.name, streetEntity.city, streetEntity.id));
+                }
+                adapter.notifyDataSetChanged();
+//                progressBar.setVisibility(View.GONE);
+            } else {
+//                progressBar.setVisibility(View.VISIBLE);
+            }
+        });
 
-        streets = new ArrayList<>();
-        for (StreetEntity streetEntity : streetEntities) {
-            streets.add(new Street(streetEntity.name, streetEntity.id));
-        }
+        viewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
+            if (isLoading) {
+                progressBar.setVisibility(View.VISIBLE);
+            } else {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void setListeners() {
@@ -75,30 +93,28 @@ public class StreetFragment extends Fragment {
     private void showAddStreetDialog() {
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_street, null);
         EditText editTextName = dialogView.findViewById(R.id.editTextStreetName);
-        EditText editTextLength = dialogView.findViewById(R.id.editTextStreetLength);
+        EditText editTextCity = dialogView.findViewById(R.id.editTextStreetCity);
 
         new AlertDialog.Builder(requireContext())
                 .setTitle("Добавить улицу")
                 .setView(dialogView)
                 .setPositiveButton("Добавить", (dialog, which) -> {
-                    addStreet(editTextName.getText().toString(), editTextLength.getText().toString());
+                    addStreet(editTextName.getText().toString(), editTextCity.getText().toString());
                 })
                 .setNegativeButton("Отмена", null)
                 .show();
     }
 
-    private void addStreet(String name, String lengthStr) {
-        if (name.isEmpty() || lengthStr.isEmpty()) {
+    private void addStreet(String name, String city) {
+        if (name.isEmpty() || city.isEmpty()) {
             Toast.makeText(requireContext(), "Введите название и длину", Toast.LENGTH_SHORT).show();
             return;
         }
 
         try {
-            int length = Integer.parseInt(lengthStr);
-            StreetEntity streetEntity = new StreetEntity(name);
-            streetRepository.insertStreet(streetEntity); // Вставляем в базу данных
-            loadStreets(); // Обновляем список улиц
-            adapter.notifyDataSetChanged(); // Обновляем адаптер
+            StreetEntity streetEntity = new StreetEntity(name, city);
+            viewModel.addStreet(streetEntity);
+//            adapter.notifyDataSetChanged();
         } catch (NumberFormatException e) {
             Toast.makeText(requireContext(), "Некорректное значение длины", Toast.LENGTH_SHORT).show();
         }
@@ -117,9 +133,8 @@ public class StreetFragment extends Fragment {
 
     private void deleteStreet(int position) {
         Street selectedStreet = streets.get(position);
-        streetRepository.deleteStreetById(selectedStreet.getId()); // Удаляем из базы данных
-        streets.remove(position); // Удаляем из списка
-        adapter.notifyDataSetChanged();
+        viewModel.deleteStreet(selectedStreet.getId());
+//        adapter.notifyDataSetChanged();
         Toast.makeText(requireContext(), "Улица удалена", Toast.LENGTH_SHORT).show();
     }
 }

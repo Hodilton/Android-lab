@@ -23,13 +23,11 @@ public class StreetInfoEntity {
     public int length;
     public int yearFounded;
     public String description;
-    public int imageResourceId;
 
-    public StreetInfoEntity(int streetId, int length, int yearFounded, String description, int imageResourceId) {
+    public StreetInfoEntity(int streetId, int length, int yearFounded, String description) {
         this.streetId = streetId;
         this.length = length;
         this.yearFounded = yearFounded;
         this.description = description;
-        this.imageResourceId = imageResourceId;
     }
 }

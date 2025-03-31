@@ -11,7 +11,7 @@ import com.example.lab_9.database.dao.StreetInfoDao;
 import com.example.lab_9.database.entities.StreetEntity;
 import com.example.lab_9.database.entities.StreetInfoEntity;
 
-@Database(entities = {StreetEntity.class, StreetInfoEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {StreetEntity.class, StreetInfoEntity.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract StreetDao streetDao();
     public abstract StreetInfoDao streetInfoDao();

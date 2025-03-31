@@ -8,8 +8,10 @@ public class StreetEntity {
     @PrimaryKey(autoGenerate = true)
     public int id;
     public String name;
+    public String city;
 
-    public StreetEntity(String name) {
+    public StreetEntity(String name, String city) {
         this.name = name;
+        this.city = city;
     }
 }

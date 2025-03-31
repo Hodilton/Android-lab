@@ -14,10 +14,17 @@
         android:hint="@string/dialog_street_name" />
 
     <EditText
-        android:id="@+id/editTextStreetLength"
+        android:id="@+id/editTextStreetCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints=""
-        android:hint="@string/dialog_street_lenght"
-        android:inputType="number" />
+        android:hint="@string/dialog_street_city" />
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTextStreetLength"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:autofillHints=""-->
+<!--        android:hint="@string/dialog_street_lenght"-->
+<!--        android:inputType="number" />-->
 </LinearLayout>

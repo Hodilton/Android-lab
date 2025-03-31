@@ -14,27 +14,30 @@ import java.util.concurrent.Executors;
 
 public class StreetRepository {
     private final AppDatabase db;
-    private final ExecutorService executorService;
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public StreetRepository(Context context) {
         db = AppDatabase.getDatabase(context);
-        executorService = Executors.newSingleThreadExecutor();
     }
 
     public void insertStreet(StreetEntity street) {
-        executorService.execute(() -> db.streetDao().insert(street));
+        executor.execute(() -> db.streetDao().insert(street));
     }
 
     public void deleteStreetById(int streetId) {
-        executorService.execute(() -> db.streetDao().deleteById(streetId));
+        executor.execute(() -> db.streetDao().deleteById(streetId));
     }
 
     public void insertStreetInfo(StreetInfoEntity info) {
-        executorService.execute(() -> db.streetInfoDao().insert(info));
+        executor.execute(() -> db.streetInfoDao().insert(info));
     }
 
     public LiveData<List<StreetEntity>> getAllStreets() {
         return db.streetDao().getAllStreets();
+    }
+
+    public List<StreetEntity> getAllStreetsSync() {
+        return db.streetDao().getAllStreetsSync();
     }
 
     public LiveData<StreetInfoEntity> getStreetInfo(int streetId) {

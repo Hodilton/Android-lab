@@ -48,17 +48,18 @@ public class StreetAdapter extends BaseAdapter {
 
     private static class ViewHolder {
         private final TextView nameView;
-        private final TextView lengthView;
+        private final TextView cityView;
         private final ImageView imageView;
 
         ViewHolder(View view) {
             nameView = view.findViewById(R.id.streetName);
-            lengthView = view.findViewById(R.id.streetLength);
+            cityView = view.findViewById(R.id.streetCity);
             imageView = view.findViewById(R.id.streetImage);
         }
 
         void bind(Street street) {
             nameView.setText(street.getName());
+            cityView.setText(street.getCity());
             imageView.setImageResource(R.drawable.street1);
         }
     }

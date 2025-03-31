@@ -18,8 +18,8 @@ public interface StreetDao {
     @Query("SELECT * FROM streets")
     LiveData<List<StreetEntity>> getAllStreets();
 
-    @Query("SELECT * FROM street_info WHERE streetId = :streetId")
-    LiveData<StreetInfoEntity> getInfoByStreetId(int streetId);
+    @Query("SELECT * FROM streets")
+    List<StreetEntity> getAllStreetsSync();
 
     @Query("DELETE FROM streets WHERE id = :streetId")
     void deleteById(int streetId);

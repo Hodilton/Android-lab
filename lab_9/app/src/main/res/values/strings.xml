@@ -2,11 +2,12 @@
     <string name="app_name">lab_9</string>
 
     <string name="street_length">Длина: %1$d м</string>
+    <string name="street_city">Город: %1$s</string>
     <string name="street_name">Название: %1$s</string>
 
     <string name="btn_add_street">Добавить улицу</string>
 
     <string name="dialog_street_name">Название улицы</string>
-    <string name="dialog_street_lenght">Длина (м)</string>
+    <string name="dialog_street_city">Название города</string>
 
 </resources>

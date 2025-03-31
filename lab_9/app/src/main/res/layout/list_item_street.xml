@@ -36,11 +36,19 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/streetLength"
+            android:id="@+id/streetCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/street_length"
+            android:text="@string/street_city"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/streetLength"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/street_length"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textColor="@android:color/darker_gray" />-->
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
