@@ -16,12 +16,13 @@ public class StreetRepository {
     private final AppDatabase db;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
+
     public StreetRepository(Context context) {
         db = AppDatabase.getDatabase(context);
     }
 
-    public void insertStreet(StreetEntity street) {
-        executor.execute(() -> db.streetDao().insert(street));
+    public long insertStreet(StreetEntity street) {
+        return db.streetDao().insert(street);
     }
 
     public void deleteStreetById(int streetId) {
@@ -32,8 +33,12 @@ public class StreetRepository {
         executor.execute(() -> db.streetInfoDao().insert(info));
     }
 
-    public LiveData<List<StreetEntity>> getAllStreets() {
-        return db.streetDao().getAllStreets();
+    public StreetEntity getStreetByIdSync(int streetId) {
+        return db.streetDao().getStreetByIdSync(streetId);
+    }
+
+    public StreetInfoEntity getStreetInfoSync(int streetId) {
+        return db.streetInfoDao().getInfoByStreetIdSync(streetId);
     }
 
     public List<StreetEntity> getAllStreetsSync() {

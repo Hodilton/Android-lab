@@ -9,5 +9,8 @@
 
     <string name="dialog_street_name">Название улицы</string>
     <string name="dialog_street_city">Название города</string>
+    <string name="dialog_street_length">Длина улицы</string>
+    <string name="dialog_street_year_founded">Год основания улицы</string>
+    <string name="dialog_street_description">Описание</string>
 
 </resources>

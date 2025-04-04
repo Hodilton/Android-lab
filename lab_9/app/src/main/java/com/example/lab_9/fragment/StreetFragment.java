@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.lab_9.R;
 import com.example.lab_9.adapter.StreetAdapter;
+import com.example.lab_9.database.entities.StreetInfoEntity;
 import com.example.lab_9.model.Street;
 import com.example.lab_9.database.entities.StreetEntity;
 import com.example.lab_9.view_model.StreetViewModel;
@@ -84,6 +85,18 @@ public class StreetFragment extends Fragment {
     private void setListeners() {
         addButton.setOnClickListener(v -> showAddStreetDialog());
 
+        listView.setOnItemClickListener((parent, v, position, id) -> {
+            Street selectedStreet = streets.get(position);
+
+            viewModel.setSelectedStreetId(selectedStreet.getId());
+
+            StreetInfoFragment streetInfoFragment = new StreetInfoFragment();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.main_fragment, streetInfoFragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
+
         listView.setOnItemLongClickListener((parent, v, position, id) -> {
             confirmDeleteStreet(position);
             return true;
@@ -95,25 +108,40 @@ public class StreetFragment extends Fragment {
         EditText editTextName = dialogView.findViewById(R.id.editTextStreetName);
         EditText editTextCity = dialogView.findViewById(R.id.editTextStreetCity);
 
+        EditText editTextLength = dialogView.findViewById(R.id.editTextStreetLength);
+        EditText editTextYearFounded = dialogView.findViewById(R.id.editTextStreetYearFounded);
+        EditText editTextDescription = dialogView.findViewById(R.id.editTextStreetDescription);
+
         new AlertDialog.Builder(requireContext())
                 .setTitle("Добавить улицу")
                 .setView(dialogView)
                 .setPositiveButton("Добавить", (dialog, which) -> {
-                    addStreet(editTextName.getText().toString(), editTextCity.getText().toString());
+                    addStreet(editTextName.getText().toString(), editTextCity.getText().toString(),
+                            editTextLength.getText().toString(), editTextYearFounded.getText().toString(),
+                            editTextDescription.getText().toString());
                 })
                 .setNegativeButton("Отмена", null)
                 .show();
     }
 
-    private void addStreet(String name, String city) {
-        if (name.isEmpty() || city.isEmpty()) {
-            Toast.makeText(requireContext(), "Введите название и длину", Toast.LENGTH_SHORT).show();
+    private void addStreet(String name, String city, String length, String yearFounded, String description) {
+        if (name.isEmpty() || city.isEmpty() || length.isEmpty() || yearFounded.isEmpty() || description.isEmpty()) {
+            Toast.makeText(requireContext(), "Заполните все поля", Toast.LENGTH_SHORT).show();
             return;
         }
 
         try {
             StreetEntity streetEntity = new StreetEntity(name, city);
-            viewModel.addStreet(streetEntity);
+//            viewModel.addStreet(streetEntity);
+
+            int streetId = streetEntity.id;
+            int streetLength = Integer.parseInt(length);
+            int foundedYear = Integer.parseInt(yearFounded);
+
+            StreetInfoEntity streetInfo = new StreetInfoEntity(0, streetLength, foundedYear, description);
+//            StreetInfoEntity streetInfoEntity = new StreetInfoEntity(streetId, streetLength, foundedYear, description);
+            viewModel.addStreet(streetEntity, streetInfo);
+
 //            adapter.notifyDataSetChanged();
         } catch (NumberFormatException e) {
             Toast.makeText(requireContext(), "Некорректное значение длины", Toast.LENGTH_SHORT).show();

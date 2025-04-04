@@ -14,4 +14,7 @@ public interface StreetInfoDao {
 
     @Query("SELECT * FROM street_info WHERE streetId = :streetId")
     LiveData<StreetInfoEntity> getInfoByStreetId(int streetId);
+
+    @Query("SELECT * FROM street_info WHERE streetId = :streetId")
+    StreetInfoEntity getInfoByStreetIdSync(int streetId);
 }
