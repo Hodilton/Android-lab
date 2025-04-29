@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.lab_6.R;
+import com.example.lab_6.models.AppSettings;
 import com.example.lab_6.view_model.SettingsViewModel;
 
 public class SettingsFragment extends Fragment {
@@ -35,13 +36,18 @@ public class SettingsFragment extends Fragment {
         editTextUsername = rootView.findViewById(R.id.username_edit);
         switchNetwork = rootView.findViewById(R.id.network_switch);
         checkBoxNotifications = rootView.findViewById(R.id.notifications_checkbox);
+
         Button saveButton = rootView.findViewById(R.id.save_button);
 
         settingsViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
 
-        settingsViewModel.getUsername().observe(getViewLifecycleOwner(), username -> editTextUsername.setText(username));
-        settingsViewModel.getNetworkPermission().observe(getViewLifecycleOwner(), networkPermission -> switchNetwork.setChecked(networkPermission));
-        settingsViewModel.getNotificationsEnabled().observe(getViewLifecycleOwner(), notificationsEnabled -> checkBoxNotifications.setChecked(notificationsEnabled));
+        settingsViewModel.getAppSettings().observe(getViewLifecycleOwner(), settings -> {
+            if (settings != null) {
+                editTextUsername.setText(settings.getUsername());
+                switchNetwork.setChecked(settings.getNetworkPermission());
+                checkBoxNotifications.setChecked(settings.getNotificationsEnabled());
+            }
+        });
 
         saveButton.setOnClickListener(v -> {
             this.saveSettings();
@@ -54,8 +60,11 @@ public class SettingsFragment extends Fragment {
     }
 
     private void saveSettings() {
-        settingsViewModel.setUsername(editTextUsername.getText().toString());
-        settingsViewModel.setNetworkPermission(switchNetwork.isChecked());
-        settingsViewModel.setNotificationsEnabled(checkBoxNotifications.isChecked());
+        AppSettings settings = new AppSettings(
+                editTextUsername.getText().toString(),
+                switchNetwork.isChecked(),
+                checkBoxNotifications.isChecked()
+        );
+        settingsViewModel.saveSettings(settings);
     }
 }

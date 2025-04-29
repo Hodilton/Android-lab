@@ -1,16 +1,24 @@
 <resources>
     <string name="app_name">lab_9</string>
 
-    <string name="street_length">Длина: %1$d м</string>
-    <string name="street_city">Город: %1$s</string>
-    <string name="street_name">Название: %1$s</string>
+    <string name="activity_auth_email">Email</string>
+    <string name="activity_auth_password">Password</string>
+    <string name="activity_auth_sign_up">Sign up</string>
 
-    <string name="btn_add_street">Добавить улицу</string>
+    <string name="activity_register_login">Login</string>
+    <string name="activity_register_new_to_here">New to here?</string>
+    <string name="activity_login_username">Username</string>
 
-    <string name="dialog_street_name">Название улицы</string>
-    <string name="dialog_street_city">Название города</string>
-    <string name="dialog_street_length">Длина улицы</string>
-    <string name="dialog_street_year_founded">Год основания улицы</string>
-    <string name="dialog_street_description">Описание</string>
+    <string name="main_activity_nav_chats">Chats</string>
+    <string name="main_activity_nav_users">Users</string>
+    <string name="main_activity_nav_profile">Profile</string>
+
+    <string name="dialog_action_cancel">Отмена</string>
+    <string name="dialog_action_confirm">ОК</string>
+
+    <string name="dialog_user_action_new_chat">Создать новый чат</string>
+    <string name="dialog_chat_action_delete_chat">Вы уверены, что хотите удалить этот чат?</string>
+    <string name="fragment_chats_no_chats_yet">No chats yet</string>
+    <string name="activity_chat_type_your_message">Type your message...</string>
 
 </resources>
